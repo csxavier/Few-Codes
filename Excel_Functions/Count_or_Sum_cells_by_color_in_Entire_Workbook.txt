@@ -1,0 +1,39 @@
+/*
+
+*/
+
+Function WbkCountCellsByColor(cellRefColor As Range)
+    Dim vWbkRes
+    Dim wshCurrent As Worksheet
+ 
+    Application.ScreenUpdating = False
+    Application.Calculation = xlCalculationManual
+ 
+    vWbkRes = 0
+    For Each wshCurrent In Worksheets
+       wshCurrent.Activate
+       vWbkRes = vWbkRes + CountCellsByColor(wshCurrent.UsedRange, cellRefColor)
+    Next
+    Application.ScreenUpdating = True
+    Application.Calculation = xlCalculationAutomatic
+ 
+    WbkCountCellsByColor = vWbkRes
+End Function
+ 
+Function WbkSumCellsByColor(cellRefColor As Range)
+    Dim vWbkRes
+    Dim wshCurrent As Worksheet
+ 
+    Application.ScreenUpdating = False
+    Application.Calculation = xlCalculationManual
+ 
+    vWbkRes = 0
+    For Each wshCurrent In Worksheets
+       wshCurrent.Activate
+       vWbkRes = vWbkRes + SumCellsByColor(wshCurrent.UsedRange, cellRefColor)
+    Next
+    Application.ScreenUpdating = True
+    Application.Calculation = xlCalculationAutomatic
+ 
+    WbkSumCellsByColor = vWbkRes
+End Function

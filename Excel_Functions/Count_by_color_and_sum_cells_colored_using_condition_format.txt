@@ -1,0 +1,30 @@
+/*
+Check below link
+https://alm-github.systems.uk.hsbc/43872555/MyCodes/wiki/How-to-count-by-color-and-sum-by-color-in-an-Excel-worksheet
+*/
+
+
+Sub SumCountByConditionalFormat()
+    Dim indRefColor As Long
+    Dim cellCurrent As Range
+    Dim cntRes As Long
+    Dim sumRes
+    Dim cntCells As Long
+    Dim indCurCell As Long
+ 
+    cntRes = 0
+    sumRes = 0
+ 
+    cntCells = Selection.CountLarge
+    indRefColor = ActiveCell.DisplayFormat.Interior.Color
+ 
+    For indCurCell = 1 To (cntCells - 1)
+        If indRefColor = Selection(indCurCell).DisplayFormat.Interior.Color Then
+            cntRes = cntRes + 1
+            sumRes = WorksheetFunction.Sum(Selection(indCurCell), sumRes)
+        End If
+    Next
+   MsgBox "Count=" & cntRes & vbCrLf & "Sum= " & sumRes & vbCrLf & vbCrLf & _
+        "Color=" & Left("000000", 6 - Len(Hex(indRefColor))) & _
+        Hex(indRefColor) & vbCrLf, , "Count & Sum by Conditional Format color"
+End Sub

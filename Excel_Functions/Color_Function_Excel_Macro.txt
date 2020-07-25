@@ -1,0 +1,19 @@
+/*
+1. Open your Excel workbook and press Alt+F11 to open Visual Basic Editor (VBE).
+2. Right-click on your workbook name under "Project-VBAProject" in the right hand part of the screen, and then choose Insert > Module from the context menu.
+3. Add the following code to your worksheet:
+*/
+
+Function ColorCount(rColor As Range, rRange As Range)
+    Dim rCell As Range
+    Dim lCol As Long
+    Dim vResult
+    lCol = rColor.Interior.ColorIndex
+    For Each rCell In rRange
+        If rCell.Interior.ColorIndex = lCol Then
+            vResult = 1 + vResult
+        End If
+    Next rCell
+    ColorCount = vResult
+End Function
+	
